@@ -4,6 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+body{
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .logo {
   height: 6em;

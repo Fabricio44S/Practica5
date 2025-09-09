@@ -1,10 +1,18 @@
-import  {  useState } from 'react'
+import  {  useEffect, useState } from 'react'
 
 import './App.css'
 import Canvas from "./components/Canvas.tsx";
 
 function App() {
 
+
+  useEffect(() => {
+    if(backgroundImagen){
+      document.body.style.backgroundImage = `url(${backgroundImagen})`;
+    } else {
+      document.body.style.backgroundImage = "none";
+    }
+  });
   const[colorPincel, setColorPincel] = useState("black");
   const[tamanioPincel, setTamanioPincel] = useState(5);
   const [backgroundImagen, setBackgroundImagen] = useState<string | null>(null);
@@ -16,7 +24,7 @@ function App() {
         <div
         style={{
           textAlign: "center", marginTop: "20px",
-          backgroundImage: backgroundImagen ? `url(${backgroundImagen})` : "none",
+          // backgroundImage: backgroundImagen ? `url(${backgroundImagen})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "100vh"
@@ -58,13 +66,17 @@ function App() {
                 />
               </label>
 
-              <input type="file"
+              <input
+              style={{backgroundColor: "blueviolet", marginLeft: "20px"}}
+              type="file"
               accept="image/*" 
               onChange={(e) =>{
                 if(e.target.files && e.target.files[0]){
                   const imagenUrl = URL.createObjectURL(e.target.files[0]);
                   setBackgroundImagen(imagenUrl);
               } }
+
+              
                 }
               />
 
